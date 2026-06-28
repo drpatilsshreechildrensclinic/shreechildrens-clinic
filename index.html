@@ -5291,12 +5291,13 @@ function printVisitRx(vid,pid){
     body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
     ${getRxColorsCSS()}
   </style>`;
-  const html = style + buildRxHTML(p,v,visitNum,s);
+  const rxHtml = buildRxHTML(p,v,visitNum,s);
   const w = window.open('','_blank','width=900,height=700');
-  w.document.write('<!DOCTYPE html><html><head><title>Prescription</title></head><body>'+html+'</body></html>');
+  if(!w){ alert('Popup blocked! Please allow popups for this site.'); return; }
+  w.document.write('<!DOCTYPE html><html><head><title>Prescription</title>'+style+'</head><body style="margin:0;padding:0;background:white">'+rxHtml+'</body></html>');
   w.document.close();
   w.focus();
-  setTimeout(()=>{ w.print(); }, 600);
+  setTimeout(()=>{ w.print(); }, 800);
 }
 
 // ═══════════════════════════════════════════════
@@ -5334,12 +5335,13 @@ function printPrescription(){
     body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
     ${getRxColorsCSS()}
   </style>`;
-  const html = style + buildRxHTML(p||{name:'Unknown',id:opdPatientId,ageY:0,ageM:0,gender:'',phone:'',blood:'',allergies:[]},v,visitNum,s);
+  const rxHtml2 = buildRxHTML(p||{name:'Unknown',id:opdPatientId,ageY:0,ageM:0,gender:'',phone:'',blood:'',allergies:[]},v,visitNum,s);
   const w = window.open('','_blank','width=900,height=700');
-  w.document.write('<!DOCTYPE html><html><head><title>Prescription</title></head><body>'+html+'</body></html>');
+  if(!w){ alert('Popup blocked! Please allow popups for this site.'); return; }
+  w.document.write('<!DOCTYPE html><html><head><title>Prescription</title>'+style+'</head><body style="margin:0;padding:0;background:white">'+rxHtml2+'</body></html>');
   w.document.close();
   w.focus();
-  setTimeout(()=>{ w.print(); }, 600);
+  setTimeout(()=>{ w.print(); }, 800);
 }
 
 // ═══════════════════════════════════════════════
@@ -5526,6 +5528,7 @@ function printBillData(b,p){
   const _pa = document.getElementById('print-area');
   const _html = _pa ? _pa.innerHTML : '';
   const w = window.open('','_blank','width=900,height=700');
+  if(!w){ alert('Popup blocked! Please allow popups for this site.'); return; }
   w.document.write('<!DOCTYPE html><html><head><title>Print</title></head><body>'+_html+'</body></html>');
   w.document.close();
   w.focus();
@@ -7104,6 +7107,7 @@ function printCertificate(templateId){
   const _pa = document.getElementById('print-area');
   const _html = _pa ? _pa.innerHTML : '';
   const w = window.open('','_blank','width=900,height=700');
+  if(!w){ alert('Popup blocked! Please allow popups for this site.'); return; }
   w.document.write('<!DOCTYPE html><html><head><title>Print</title></head><body>'+_html+'</body></html>');
   w.document.close();
   w.focus();
@@ -7402,6 +7406,7 @@ function printReferral(templateId){
   const _pa = document.getElementById('print-area');
   const _html = _pa ? _pa.innerHTML : '';
   const w = window.open('','_blank','width=900,height=700');
+  if(!w){ alert('Popup blocked! Please allow popups for this site.'); return; }
   w.document.write('<!DOCTYPE html><html><head><title>Print</title></head><body>'+_html+'</body></html>');
   w.document.close();
   w.focus();
