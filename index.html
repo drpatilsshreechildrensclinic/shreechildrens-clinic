@@ -1582,7 +1582,7 @@ window.addEventListener('load', async ()=>{
         }
         if(typeof refreshCurrentSection==='function') refreshCurrentSection();
       }catch(e){ console.warn('⚠️ Polling error:', e); }
-    }, 3000);
+    }, 5000);
   }catch(e){ 
     console.warn('Firestore sync failed:',e);
     checkRememberedSession();
