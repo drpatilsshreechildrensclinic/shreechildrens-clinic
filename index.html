@@ -4498,27 +4498,23 @@ function generateReport(){
 // FIREBASE REALTIME REFRESH
 // ═══════════════════════════════════════════════
 function refreshCurrentSection(){
-  console.log('🔄 refresh called, role:', currentRole);
-  if(!currentRole) return;
   if(!document.getElementById('page-app')?.classList.contains('active')) return;
-  const active = document.querySelector('.page-section.active');
-  if(!active) return;
-  const id = active.id;
-  console.log('📍 active section id:', id);
+  const id = 'sec-' + currentSection;
+  console.log('🔄 refresh, section:', currentSection);
 
-  if(id==='sec-dashboard'){
+  if(currentSection==='dashboard'){
     // Dashboard वर फक्त stats update करा — flicker नको
     updateDashboardStats();
   } else {
     const renders = {
-      'sec-patients':     ()=>renderPatients&&renderPatients(),
-      'sec-history':      ()=>renderHistoryPage&&renderHistoryPage(),
-      'sec-appointments': ()=>renderAppointments&&renderAppointments(),
-      'sec-billing':      ()=>renderBillingSection&&renderBillingSection(),
-      'sec-reports':      ()=>renderReports&&renderReports(),
-      'sec-vaccination':  ()=>renderVaccination&&renderVaccination(),
+      'patients':     ()=>renderPatients&&renderPatients(),
+      'history':      ()=>renderHistoryPage&&renderHistoryPage(),
+      'appointments': ()=>renderAppointments&&renderAppointments(),
+      'billing':      ()=>renderBillingSection&&renderBillingSection(),
+      'reports':      ()=>renderReports&&renderReports(),
+      'vaccination':  ()=>renderVaccination&&renderVaccination(),
     };
-    if(renders[id]) renders[id]();
+    if(renders[currentSection]) renders[currentSection]();
   }
 }
 
