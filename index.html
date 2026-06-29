@@ -1560,6 +1560,7 @@ window.addEventListener('load', async ()=>{
     });
     // Polling — दर 3 seconds ने sync (WebChannel error fallback)
     setInterval(async ()=>{
+      console.log('⏰ Polling...');
       try{
         for(const col of cols){
           const snap = await window._fsdb.collection(col).get();
@@ -1579,7 +1580,7 @@ window.addEventListener('load', async ()=>{
           }
         }
         if(typeof refreshCurrentSection==='function') refreshCurrentSection();
-      }catch(e){}
+      }catch(e){ console.warn('⚠️ Polling error:', e); }
     }, 3000);
   }catch(e){ 
     console.warn('Firestore sync failed:',e);
